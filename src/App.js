@@ -11,34 +11,62 @@ class App extends React.Component{
     this.state={
       dataRenderedInCard:'',
       errorMsg:'',
+      renderedLocWeatherData:'',
       displayMap:false,
-      displarErrorMsg: false
+      displarErrorMsg: false,
+      showWeather : false,
+      weatherErr:'',
+      dspErrWeather:false,
     }
   }
 
 
   showData= async (event)=>{
     event.preventDefault();
-
     let inputCity= event.target.userInput.value;
     let locURL = `https://us1.locationiq.com/v1/search.php?key=pk.370701c55ed7503519f7418b1098f8d2&q=${inputCity}&format=json`;
+    let weatherData = `${process.env.REACT_APP_URL}/weather?searchQuery=${inputCity}`;
+
     try{
       let locResult = await axios.get(locURL);
       this.setState({
         dataRenderedInCard: locResult.data[0],
         displayMap:true,
+        displarErrorMsg:false,
+
       })
 
     }
+    
     catch{
 
     this.setState({
       errorMsg:'sorry , Error in response !!',
-
-      displarErrorMsg: true
+      displarErrorMsg : true,
+      displayMap: false
     })
     }
+
+    try{
+      let locWeatherData = await axios.get(weatherData);
+       this.setState({
+         renderedLocWeatherData : locWeatherData.data[0],
+         showWeather : true , 
+         dspErrWeather:false,
+       })
+     
+    }
+    catch{
+      this.setState({
+        weatherErr:'sorry , no weather data availabe for your location',
+        showWeather : false ,
+        dspErrWeather:true
+      })
+
+    }
   };
+
+  
 
 
   render(){
@@ -54,7 +82,7 @@ class App extends React.Component{
           </Button>
         </Form>
 
-       {this.state.displarErrorMsg || this.state.displayMap && <Card className="bg-dark text-white">
+       {this.state.displayMap && <Card className="bg-dark text-white">
           <Card.Img className='cardImg' src={`https://maps.locationiq.com/v3/staticmap?key=pk.370701c55ed7503519f7418b1098f8d2&center=${this.state.dataRenderedInCard.lat},${this.state.dataRenderedInCard.lon}`} alt="Card image" height='600px'/>
           <Card.ImgOverlay>
             <Card.Title>name : {this.state.dataRenderedInCard.display_name}</Card.Title>
@@ -62,8 +90,14 @@ class App extends React.Component{
             <Card.Text> lon : {this.state.dataRenderedInCard.lon}</Card.Text>
           </Card.ImgOverlay>
         </Card>}
-        <p>{this.state.errorMsg}</p>
-
+          {this.state.displarErrorMsg && <p>{ this.state.errorMsg}</p>}  
+    
+      {this.state.showWeather && <Card>
+          <Card.Body>    
+                <p>{this.state.renderedLocWeatherData.date}</p>
+          </Card.Body>
+        </Card>}
+        {this.state.dspErrWeather && <p>{this.state.weatherErr}</p>} 
       </div>
     )
   };
