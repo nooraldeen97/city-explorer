@@ -97,7 +97,7 @@ class App extends React.Component{
                 <p>{this.state.renderedLocWeatherData.date}</p>
           </Card.Body>
         </Card>}
-        {this.state.dspErrWeather && <p>{this.state.weatherErr}</p>} 
+        {/* {this.state.dspErrWeather && <p>{this.state.weatherErr}</p>}  */}
       </div>
     )
   };
