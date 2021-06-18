@@ -68,21 +68,12 @@ class App extends React.Component{
     try{
       let locWeatherData = await axios.get(weatherData);
       console.log(locWeatherData.data)
-      if(locWeatherData.data !== undefined){
+      
          this.setState({
            renderedLocWeatherData : locWeatherData.data,
            showWeather : true , 
            dspErrWeather:false,
          })
-         
-       }else{
-        this.setState({
-          weatherErr:'sorry , no weather data availabe for your location',
-          showWeather : false ,
-          dspErrWeather:true
-  
-        })
-       }
     }
     catch{
       this.setState({
