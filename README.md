@@ -1,45 +1,35 @@
-# City-explorer
+# book-app
 
-**Author**: Nooraldeen Khalaf 
+**Author**: Nooraldeen khalaf 
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
-**our application make the user free to choose any location want and once press in Explore! it shows**
-**static map for that location that the user has entered .**
+The ability for a user to securly login to an application to store their data is crucial. Think about all the times you have signed up for an app using your facebook or google account. That is done through a process called OAuth. Essientially, the app allows “someone else” (an external identity “provider”) to take care of making sure that you are who you say you are.
 
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
-**First input the location or any place in the input field**
-**click on Explore! button**
-**then the static map will be shown in the page**
+open our link , and sign up with google or their email.
 
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
-**I used react / bootstrap react (form and card component) / axios library / Api lication server .**
+react , bootstrap react , Auth0 library .
 
 ## Change Log
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
 
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
-
-**13-6-2021 6:00pm - Application now has the from and the data that come from the server will be rendred in card below the form .**
-
-
+20/6/2021 7:00 pm - application has Authentication , log in and log out for users.
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
 
-## web request-response cycle
+Name of feature: User Authentication with Auth0
 
-![Alt Text](src/img/data.png)
+Estimate of time needed to complete: 3hours
 
-Name of feature: Asynchronous code, and APIs
-
-Estimate of time needed to complete: 4 hours
-
-Start time: 2:00pm
+Start time: 1:00pm
 
 Finish time: 6:00pm
 
-Actual time needed to complete: 4hours
+Actual time needed to complete: 5hours
